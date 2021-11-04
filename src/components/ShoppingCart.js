@@ -5,16 +5,16 @@ import { useContext } from 'react';
 import Item from './ShoppingCartItem';
 
 // Contexts
-import { CartContext } from '../contexts/CartContext';
+import { ShoppingCartContext } from '../contexts/ShoppingCartContext';
 
 const ShoppingCart = () => {
+	const { cart } = useContext(ShoppingCartContext);
+
 	const getCartTotal = () => {
 		return cart.reduce((acc, value) => {
 			return acc + value.price;
 		}, 0).toFixed(2);
 	};
-
-	const cart = useContext(CartContext);
 
 	return (
 		<div className="shopping-cart">

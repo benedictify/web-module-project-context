@@ -9,7 +9,7 @@ import ShoppingCart from './components/ShoppingCart';
 
 // Contexts
 import { ProductContext } from './contexts/ProductContext';
-import { CartContext } from './contexts/CartContext';
+import { ShoppingCartContext } from './contexts/ShoppingCartContext';
 
 function App() {
 	const [products] = useState(data);
@@ -17,16 +17,16 @@ function App() {
 
 	const addItem = item => {
 		// add the given item to the cart
-		setCart({
+		setCart([
 			...cart,
 			item
-		})
+		])
 	};
 
 	return (
 		<div className="App">
 			<ProductContext.Provider value={{ products, addItem }}>
-			<CartContext.Provider value={cart}>
+			<ShoppingCartContext.Provider value={{cart}}>
 				<Navigation />
 
 				{/* Routes */}
@@ -37,7 +37,7 @@ function App() {
 				<Route path="/cart">
 					<ShoppingCart />
 				</Route>
-			</CartContext.Provider>
+			</ShoppingCartContext.Provider>
 			</ProductContext.Provider>
 		</div>
 	);
